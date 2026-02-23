@@ -1,3 +1,4 @@
+package clases.java;
 public class ResultadoEjecucion {
 
     private boolean valido;

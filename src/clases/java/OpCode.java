@@ -1,3 +1,5 @@
+package clases.java;
+
 public enum OpCode {
 
     OP_0,

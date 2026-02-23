@@ -2,6 +2,9 @@ package main.java;
 
 import java.security.MessageDigest;
 
+import clases.java.InterpreteScript;
+import clases.java.ResultadoEjecucion;
+
 public class Main {
 
     public static void main(String[] args) throws Exception {
@@ -21,9 +24,9 @@ public class Main {
 
         InterpreteScript interprete = new InterpreteScript();
 
-        ResultadoEjecucion resultado =
+        Object resultado =
                 interprete.validar(scriptSig, scriptPubKey, true);
 
-        System.out.println("Resultado final: " + resultado.getMensaje());
+        System.out.println("Resultado final: " + ((ResultadoEjecucion) resultado).getMensaje());
     }
 }
