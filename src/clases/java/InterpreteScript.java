@@ -4,14 +4,16 @@ import java.util.List;
 
 public class InterpreteScript {
 
-    private Tokenizador tokenizador = new Tokenizador();
-    private MaquinaScript maquina = new MaquinaScript();
+    private final Tokenizador tokenizador = new Tokenizador();
+    private final MaquinaScript maquina = new MaquinaScript();
 
     public ResultadoEjecucion validar(String scriptSig,
                                       String scriptPubKey,
                                       boolean trace) {
 
         try {
+
+            maquina.reset();
 
             List<Token> tokensSig = tokenizador.tokenizar(scriptSig);
             maquina.ejecutar(tokensSig, trace);
@@ -22,10 +24,10 @@ public class InterpreteScript {
             boolean valido = maquina.resultadoFinal();
 
             return new ResultadoEjecucion(valido,
-                    valido ? "Script válido" : "Script inválido");
+                    valido ? "Script valido" : "Script invalido (resultado final es false)");
 
         } catch (Exception e) {
-            return new ResultadoEjecucion(false, e.getMessage());
+            return new ResultadoEjecucion(false, "Error: " + e.getMessage());
         }
     }
 }
