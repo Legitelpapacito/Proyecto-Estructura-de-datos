@@ -1,4 +1,4 @@
-package clases.java;
+package clases;
 
 import java.nio.ByteBuffer;
 import java.security.MessageDigest;
