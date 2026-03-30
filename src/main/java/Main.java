@@ -21,12 +21,8 @@ public class Main {
         String pubKeyHashHex = "0x" + HashUtil.aHex(HashUtil.hash160Mock(pubKey.getBytes()));
 
         // scriptSig: empuja firma y pubKey
-        String scriptSig = firma + " " + pubKey;
-
-        // scriptPubKey P2PKH
-        String scriptPubKey =
-                "OP_DUP OP_HASH160 " + pubKeyHashHex +
-                " OP_EQUALVERIFY OP_CHECKSIG";
+        String scriptSig = "OP_1";
+        String scriptPubKey = "OP_IF OP_2 OP_3 OP_ADD OP_ELSE OP_0 OP_ENDIF";
 
         InterpreteScript interprete = new InterpreteScript();
         ResultadoEjecucion resultado = interprete.validar(scriptSig, scriptPubKey, trace);
