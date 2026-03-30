@@ -18,12 +18,18 @@ public class Tokenizador {
 
         for (String p : partes) {
 
+            // Compatibilidad: PUSHDATA/PUSHDATA1/PUSHDATA2 como opcode explícito
+            if (p.equalsIgnoreCase("PUSHDATA") || p.equalsIgnoreCase("PUSHDATA1") || p.equalsIgnoreCase("PUSHDATA2")) {
+                tokens.add(new Token(OpCode.valueOf(p.toUpperCase())));
+                continue;
+            }
+
             if (p.startsWith("OP_")) {
                 tokens.add(new Token(OpCode.valueOf(p)));
                 continue;
             }
 
-            // Formato <texto> => bytes UTF-8 (util para firma/pubKey mock)
+            // Formato <texto> => bytes UTF-8 (útil para firma/pubKey mock)
             if (p.startsWith("<") && p.endsWith(">") && p.length() >= 2) {
                 String inner = p.substring(1, p.length() - 1);
                 tokens.add(new Token(inner.getBytes(StandardCharsets.UTF_8)));

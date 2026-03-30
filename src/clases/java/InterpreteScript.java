@@ -12,7 +12,6 @@ public class InterpreteScript {
                                       boolean trace) {
 
         try {
-
             maquina.reset();
 
             List<Token> tokensSig = tokenizador.tokenizar(scriptSig);
@@ -22,9 +21,8 @@ public class InterpreteScript {
             maquina.ejecutar(tokensPub, trace);
 
             boolean valido = maquina.resultadoFinal();
-
             return new ResultadoEjecucion(valido,
-                    valido ? "Script valido" : "Script invalido (resultado final es false)");
+                    valido ? "Script válido" : "Script inválido (resultado final es false)");
 
         } catch (Exception e) {
             return new ResultadoEjecucion(false, "Error: " + e.getMessage());
