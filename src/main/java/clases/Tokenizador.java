@@ -19,10 +19,14 @@ public class Tokenizador {
         for (String p : partes) {
 
             // Compatibilidad: PUSHDATA/PUSHDATA1/PUSHDATA2 como opcode explícito
-            if (p.equalsIgnoreCase("PUSHDATA") || p.equalsIgnoreCase("PUSHDATA1") || p.equalsIgnoreCase("PUSHDATA2")) {
-                tokens.add(new Token(OpCode.valueOf(p.toUpperCase())));
+            if (p.equalsIgnoreCase("PUSHDATA")) {
+                tokens.add(new Token(OpCode.PUSHDATA1)); // alias
                 continue;
             }
+            if (p.equalsIgnoreCase("PUSHDATA1") || p.equalsIgnoreCase("PUSHDATA2")) {
+                tokens.add(new Token(OpCode.valueOf(p.toUpperCase())));
+                continue;
+}
 
             if (p.startsWith("OP_")) {
                 tokens.add(new Token(OpCode.valueOf(p)));

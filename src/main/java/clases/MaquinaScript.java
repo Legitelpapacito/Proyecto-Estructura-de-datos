@@ -50,7 +50,7 @@ public class MaquinaScript {
             OpCode op = token.getOpcode();
 
             // ---- Compatibilidad: PUSHDATAx toma el siguiente token como data ----
-            if (op == OpCode.PUSHDATA || op == OpCode.PUSHDATA1 || op == OpCode.PUSHDATA2) {
+            if (op == OpCode.PUSHDATA1 || op == OpCode.PUSHDATA2) {
                 if (i + 1 >= tokens.size()) {
                     throw new RuntimeException(op + " requiere un dato después");
                 }
