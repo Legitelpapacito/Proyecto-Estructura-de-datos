@@ -2,14 +2,27 @@ package clases;
 
 import java.util.List;
 
+/**
+ * Clase que se encarga de interpretar y validar scripts.
+ * Ejecuta primero el scriptSig y luego el scriptPubKey.
+ */
 public class InterpreteScript {
 
+    /** Tokenizador para separar el script en tokens */
     private final Tokenizador tokenizador = new Tokenizador();
+
+    /** Máquina que ejecuta los scripts */
     private final MaquinaScript maquina = new MaquinaScript();
 
-    public ResultadoEjecucion validar(String scriptSig,
-                                      String scriptPubKey,
-                                      boolean trace) {
+    /**
+     * Valida un script completo.
+     *
+     * @param scriptSig script de entrada
+     * @param scriptPubKey script de verificación
+     * @param trace si se quiere ver la ejecución paso a paso
+     * @return resultado de la ejecución
+     */
+    public ResultadoEjecucion validar(String scriptSig,String scriptPubKey,boolean trace) {
 
         try {
             maquina.reset();
